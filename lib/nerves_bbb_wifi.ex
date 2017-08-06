@@ -16,10 +16,16 @@ defmodule NervesBBBWiFi do
   # @ti_nvs_file "/lib/firmware/ti-connectivity/wl127x-nvs.bin"
   @ti_nvs_file "test/wifi/wl127x-nvs.bin"
 
-  @spec write_mac_to_nvs_file(<<_::6>>) :: :ok | {:error, :atom}
-  def write_mac_to_nvs_file(<<0xff, 0xff, 0xff, 0xff, 0xff, 0xff>>), do: write_mac_to_nvs_file(<<0, 0, 0, 0, 0, 0>>)
-  def write_mac_to_nvs_file(<<b1, b2, b3, b4, b5, b6>>) do
-    case File.exists?(@ti_nvs_file) do
+  @spec write_mac_to_nvs_file(<<_::576>>, String.t()) :: :ok | {:error, :atom}
+
+  def write_mac_to_nvs_file(mac_bytes, filename \\ @ti_nvs_file)
+
+  def write_mac_to_nvs_file(<<0xff, 0xff, 0xff, 0xff, 0xff, 0xff>>, filename) do
+    write_mac_to_nvs_file(<<0, 0, 0, 0, 0, 0>>, filename)
+  end
+
+  def write_mac_to_nvs_file(<<b1, b2, b3, b4, b5, b6>>, filename) do
+    case File.exists?(filename) do
       true ->
         block1 = <<b6, b5, b4, b3>>
         block2 = <<b2, b1>>

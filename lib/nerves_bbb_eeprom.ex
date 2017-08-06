@@ -3,9 +3,9 @@ defmodule NervesBBBEEPROM do
   Functions for accessing the BBB onboard EEPROM.
   """
 
-  # @eeprom_device "/sys/bus/i2c/devices/0-0050/eeprom"
-  # @eeprom_device "test/eeprom/bbgw-eeprom.dump"
-  @eeprom_device "../brainzfw/eeprom/eeprom.bin"
+  # @eeprom_file "/sys/bus/i2c/devices/0-0050/eeprom"
+  # @eeprom_file "test/eeprom/bbgw-eeprom.dump"
+  @eeprom_file "../brainzfw/eeprom/eeprom.bin"
 
   @doc """
   Structure holding the EEPROM contents.
@@ -23,9 +23,9 @@ defmodule NervesBBBEEPROM do
       :world
 
   """
-  @spec read_eeprom :: {:ok, binary()} | {:error, :atom}
-  def read_eeprom do
-    case File.open(@eeprom_device) do
+  @spec read_eeprom(String.t()) :: {:ok, binary()} | {:error, :atom}
+  def read_eeprom(filename \\ @eeprom_file) do
+    case File.open(filename) do
       {:ok, file} ->
         # read only the interesting parts because I2C access might be slow
         head = IO.binread(file, 28)
