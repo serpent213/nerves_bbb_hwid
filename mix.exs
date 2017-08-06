@@ -1,4 +1,4 @@
-defmodule NervesBbbHwid.Mixfile do
+defmodule NervesBBBHwId.Mixfile do
   use Mix.Project
 
   def project do
@@ -7,6 +7,7 @@ defmodule NervesBbbHwid.Mixfile do
       version: "0.1.0",
       elixir: "~> 1.5",
       start_permanent: Mix.env == :prod,
+      package: package(),
       deps: deps()
     ]
   end
@@ -15,6 +16,16 @@ defmodule NervesBbbHwid.Mixfile do
   def application do
     [
       extra_applications: [:logger]
+    ]
+  end
+
+  defp package do
+    [
+      name: "nerves_bbb_hwid",
+      description: "BeagleBone Black (and Green Wireless) Hardware ID helpers (EEPROM, MAC address)",
+      licenses: ["Apache-2.0"],
+      maintainers: ["Steffen Beyer"],
+      links: %{"GitHub" => "https://github.com/serpent213/nerves_bbb_hwid"}
     ]
   end
 
