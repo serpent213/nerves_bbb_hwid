@@ -1,6 +1,6 @@
 defmodule NervesBBBWiFi do
   @moduledoc """
-  Documentation for NervesBBBWiFi.
+  Setup functionality for the BBGW WiFi chipset.
   """
 
   @doc """
@@ -14,7 +14,7 @@ defmodule NervesBBBWiFi do
   """
 
   # @ti_nvs_file "/lib/firmware/ti-connectivity/wl127x-nvs.bin"
-  @ti_nvs_file "../wl127x-nvs.bin"
+  @ti_nvs_file "test/wifi/wl127x-nvs.bin"
 
   @spec write_mac_to_nvs_file(<<_::6>>) :: :ok | {:error, :atom}
   def write_mac_to_nvs_file(<<0xff, 0xff, 0xff, 0xff, 0xff, 0xff>>), do: write_mac_to_nvs_file(<<0, 0, 0, 0, 0, 0>>)
