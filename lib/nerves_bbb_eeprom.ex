@@ -3,9 +3,7 @@ defmodule NervesBBBEEPROM do
   Functions for accessing the BBB onboard EEPROM.
   """
 
-  # @eeprom_file "/sys/bus/i2c/devices/0-0050/eeprom"
-  # @eeprom_file "test/eeprom/bbgw-eeprom.dump"
-  @eeprom_file "../brainzfw/eeprom/eeprom.bin"
+  @eeprom_file "/sys/bus/i2c/devices/0-0050/eeprom"
 
   @doc """
   Structure holding the EEPROM contents.

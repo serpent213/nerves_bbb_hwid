@@ -13,8 +13,7 @@ defmodule NervesBBBWiFi do
 
   """
 
-  # @ti_nvs_file "/lib/firmware/ti-connectivity/wl127x-nvs.bin"
-  @ti_nvs_file "test/wifi/wl127x-nvs.bin"
+  @ti_nvs_file "/lib/firmware/ti-connectivity/wl127x-nvs.bin"
 
   @spec write_mac_to_nvs_file(<<_::576>>, String.t()) :: :ok | {:error, :atom}
 
